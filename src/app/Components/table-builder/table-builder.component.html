@@ -1,0 +1,12 @@
+<table class='col-12'>
+    <thead *ngIf="tableHeader">
+        <tr>
+            <th *ngFor="let header of tableHeader; let i = index" id="cell-{{i}}" (click)='handleClickHeader($event,header,i)'>{{header.value}}</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="tableData">
+        <tr *ngFor="let item of tableData; let i = index">
+            <td *ngFor="let data of item; let j = index" id="cell-{{i}}-{{j}}" (click)='handleClickData($event,data,i,j)'>{{data.value}}</td>
+        </tr>
+    </tbody>
+</table>

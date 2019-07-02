@@ -1,0 +1,6 @@
+<div class='m-3 file'>
+    <input type="file" id="file" value="Upload Files" (change)='fileUpload($event)'/>
+</div>
+<div class='m-2 table' *ngIf="tableData && tableHeader">
+    <app-table-builder [(head)]='tableHeader' [(data)]='tableData' (dataemitter)='getData($event)'></app-table-builder>
+</div>
