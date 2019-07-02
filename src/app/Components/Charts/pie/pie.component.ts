@@ -41,7 +41,12 @@ export class PieComponent implements OnInit, OnChanges {
   }
   ngOnChanges() {
     if (this.pieData) {
-      
+      console.log('PieData', this.pieData);
+// tslint:disable-next-line: prefer-for-of
+      for (let i = 0; i < this.pieData[0].length; i++) {
+        this.pieChartLabels.push(this.pieData[0][i].value);
+      }
+      console.log(this.pieChartLabels);
     }
   }
 
