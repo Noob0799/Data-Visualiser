@@ -133,6 +133,7 @@ export class TableBuilderComponent implements  OnChanges {
     for ( let i = 0; i < this.tableData.length; i++ ) {
 // tslint:disable-next-line: prefer-for-of
       for ( let j = 0; j < this.tableData[i].length; j++) {
+        this.tableData[i][j].id = this.tableHeader[0].value + ' ' +  this.tableData[i][j].x;
         this.tableData[i][j].clicked = false;
         this.onClickData(this.tableData[i][j]);
       }

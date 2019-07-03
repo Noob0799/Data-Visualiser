@@ -10,6 +10,7 @@ import {Cell} from '../app/Components/cell';
 import { ChartComponent } from './Components/chart/chart.component';
 import { PieComponent } from './Components/Charts/pie/pie.component';
 import { ChartsModule } from 'ng2-charts';
+import { BarComponent } from './Components/Charts/bar/bar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ChartsModule } from 'ng2-charts';
     UploadButtonComponent,
     TableBuilderComponent,
     ChartComponent,
-    PieComponent
+    PieComponent,
+    BarComponent
   ],
   imports: [
     BrowserModule,

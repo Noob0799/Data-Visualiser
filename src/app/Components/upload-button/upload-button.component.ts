@@ -21,7 +21,7 @@ export class UploadButtonComponent implements OnInit {
     const file = event.target.files[0];
     reader.readAsText(file);
     reader.onload = (e) => {
-      const data = e.target.result;
+      const data = reader.result;
       this.createTable(data);
     };
   }
