@@ -1,4 +1,8 @@
-<div class="chart">Yo</div>
-<div *ngIf='data'>
-    <app-pie [(pieData)]='data'></app-pie>
+<div class="chartButtons my-2">
+    <button type="button" class="btn btn-primary" id="pie" (click)='pie()'>Pie</button>
+    <button type="button" class="btn btn-primary mx-1" id="bar" (click)='bar()'>Bar</button>
+    <button type="button" class="btn btn-primary" id="stack" (click)='stack()'>Stacked Bar</button>
+</div>
+<div *ngIf='pieData && pieclicked'>
+    <app-pie [(pieData)]='pieData'></app-pie>
 </div>
