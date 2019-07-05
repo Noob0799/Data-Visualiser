@@ -1,6 +1,4 @@
-<div class="chart my-4">
-    <div>
-      <div style="display: block">
+<div class="chart my-4" style="position: relative; height: 80vh">
         <canvas baseChart
           [datasets]="barChartData"
           [labels]="barChartLabels"
@@ -8,13 +6,6 @@
           [plugins]="barChartPlugins"
           [legend]="barChartLegend"
           [colors]="barChartColors"
-          [chartType]="barChartType"
-          width="400" height="400"
-          class="my-2 py-2">
+          [chartType]="barChartType">
         </canvas>
-      </div>
-      <!-- <div class="buttons my-2">
-        <button mat-button mat-raised-button class="btn btn-dark" color="primary" (click)="randomize()">Update</button>
-      </div> -->
-    </div>
-  </div>
+</div>
