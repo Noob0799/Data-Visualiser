@@ -60,6 +60,13 @@ export class TableBuilderComponent implements  OnChanges {
 }
 
   handleClickData(event, info, i, j) {
+    for (let i = 0; i < this.tableHeader.length; i++) {
+      this.tableHeader[i].clicked = false;
+      this.onClickHead(this.tableHeader[i]);
+    }
+    if (info.y === 0) {
+      return;
+    }
     if ( this.numberOfClick === 0) {
       this.tableData[info.x - 1][info.y].clicked = !this.tableData[info.x - 1][info.y].clicked;
       this.onClickData(this.tableData[info.x - 1][info.y]);
@@ -70,7 +77,7 @@ export class TableBuilderComponent implements  OnChanges {
       this.onClickData(this.tableData[info.x - 1][info.y]);
       this.secondLastClickData = this.lastClickData;
       this.lastClickData = this.tableData[info.x - 1][info.y];
-      this.select(this.lastClickData, this.secondLastClickData);
+      this.selectData(this.lastClickData, this.secondLastClickData);
     }
     if (this.numberOfClick >= 2 && this.lastClickData !== this.tableData[info.x - 1][info.y]) {
       this.secondLastClickData.clicked = !this.secondLastClickData.clicked;
@@ -79,7 +86,7 @@ export class TableBuilderComponent implements  OnChanges {
       this.onClickData(this.tableData[info.x - 1][info.y]);
       this.secondLastClickData = this.lastClickData;
       this.lastClickData = this.tableData[info.x - 1][info.y];
-      this.select(this.lastClickData, this.secondLastClickData);
+      this.selectData(this.lastClickData, this.secondLastClickData);
     } else if (this.numberOfClick >= 2 && this.lastClickData === this.tableData[info.x - 1][info.y]) {
       this.tableData[info.x - 1][info.y].clicked = !this.tableData[info.x - 1][info.y].clicked;
       this.onClickData(this.tableData[info.x - 1][info.y]);
@@ -94,9 +101,12 @@ export class TableBuilderComponent implements  OnChanges {
     const x = cell.x - 1;
     // console.log('Inside', cell);
     const cellRef = document.getElementById('cell-' + x + '-' + cell.y);
-    if (cell.clicked) {
+    if (cell.clicked && cell.y !== 0) {
       cellRef.style.backgroundColor = 'black';
       cellRef.style.color = 'white';
+    } else if (cell.clicked && cell.y === 0) {
+      cellRef.style.backgroundColor = 'white';
+      cellRef.style.color = 'black';
     } else {
       if (cell.x % 2 === 0) {
         cellRef.style.backgroundColor = 'lawngreen';
@@ -106,7 +116,7 @@ export class TableBuilderComponent implements  OnChanges {
       cellRef.style.color = 'black';
     }
   }
-  select(first: Cell, second: Cell) {
+  selectData(first: Cell, second: Cell) {
     console.log('SecondLast', second);
     console.log('Last', first);
     this.emitData = [];
@@ -143,6 +153,11 @@ export class TableBuilderComponent implements  OnChanges {
     }
     this.emitData.push(row);
     row = [];
+    console.log(x1 - 1, x2);
+    for (let i = x1 - 1; i < x2; i++) {
+      this.tableData[i][0].clicked = true;
+      this.onClickData(this.tableData[i][0]);
+    }
     for (let i = x1 - 1; i < x2; i++) {
       for (let j = y1; j <= y2; j++) {
         this.tableData[i][j].clicked = true;
@@ -157,6 +172,9 @@ export class TableBuilderComponent implements  OnChanges {
   }
   handleClickHeader(event, info, i) {
     console.log(info, i);
+    if (info.x === 0 && info.y === 0 ) {
+      return;
+    }
     this.tableHeader[info.y].clicked = !this.tableHeader[info.y].clicked;
     this.lastClickHead.clicked = false;
     this.onClickHead(this.lastClickHead);
@@ -167,9 +185,25 @@ export class TableBuilderComponent implements  OnChanges {
     const cellRef = document.getElementById('cell-' + cell.y);
     if (cell.clicked) {
       cellRef.style.backgroundColor = 'blue';
+      const first = this.tableData[0][cell.y];
+      const second = this.tableData[this.tableData.length - 1][cell.y];
+      this.selectData(first, second);
     } else {
       cellRef.style.backgroundColor = 'black';
       cellRef.style.color = 'white';
+      for (let i = 0; i < this.tableData.length; i++) {
+        const dataRef = document.getElementById('cell-' + i + '-' + cell.y);
+        const dataHead = document.getElementById('cell-' + i + '-' + 0);
+        if (this.tableData[i][cell.y].x % 2 === 0) {
+          dataRef.style.backgroundColor = 'lawngreen';
+          dataHead.style.backgroundColor = 'lawngreen';
+        } else {
+          dataRef.style.backgroundColor = 'gold';
+          dataHead.style.backgroundColor = 'gold';
+        }
+        dataRef.style.color = 'black';
+        dataHead.style.color = 'black';
+      }
     }
   }
 }

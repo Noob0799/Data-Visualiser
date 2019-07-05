@@ -14,7 +14,11 @@ export class PieComponent implements OnInit, OnChanges {
   public pieChartOptions: ChartOptions = {
     responsive: true,
     legend: {
-      position: 'top',
+      position: 'bottom',
+      labels: {
+        fontColor: 'black',
+        fontSize: 20
+      },
     },
     plugins: {
       datalabels: {
@@ -23,7 +27,8 @@ export class PieComponent implements OnInit, OnChanges {
           return label;
         },
       },
-    }
+    },
+    maintainAspectRatio: false
   };
   public pieChartLabels: Label[] = [];
   public pieChartData: number[] = [];

@@ -1,20 +1,15 @@
-<div class="chart my-4">
-    <div>
-      <div class="chart">
-        <canvas baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [chartType]="pieChartType"
-          [options]="pieChartOptions"
-          [plugins]="pieChartPlugins"
-          [colors]="pieChartColors"
-          [legend]="pieChartLegend"
-          width="400" height="400">
-        </canvas>
-      </div>
-    </div>
-  </div>
-  <div class="buttons my-2">
-    <button mat-button mat-raised-button class="btn btn-dark mx-1" color="primary" (click)="pieChartLegend=!pieChartLegend">Toggle Legend</button>
-    <button mat-button mat-raised-button class="btn btn-dark" color="primary" (click)="changeLegendPosition()">Change Legend Position</button>
-  </div>
+<div class="chart my-4" style="position: relative; height: 1000px">
+      <canvas baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [colors]="pieChartColors"
+        [legend]="pieChartLegend">
+      </canvas>
+</div>
+<div class="buttons my-2">
+  <button mat-button mat-raised-button class="btn btn-dark mx-1" color="primary" (click)="pieChartLegend=!pieChartLegend">Toggle Legend</button>
+  <button mat-button mat-raised-button class="btn btn-dark" color="primary" (click)="changeLegendPosition()">Change Legend Position</button>
+</div>
